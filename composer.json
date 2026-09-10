@@ -1,0 +1,19 @@
+{
+  "name": "getsitekit/taxonomy",
+  "type": "sitekit-extension",
+  "version": "1.0.0",
+  "title": "Taxonomy",
+  "description": "Sitekit 的分类法扩展。",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Sitekit",
+      "email": "info@sitekit.cn",
+      "homepage": "http://www.sitekit.cn"
+    }
+  ],
+  "extra": {
+    "icon": "icon.svg",
+    "scripts": "scripts.php"
+  }
+}

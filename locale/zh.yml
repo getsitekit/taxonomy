@@ -1,0 +1,52 @@
+# taxonomy 模块翻译（zh，语义 key yml 词库）
+# key 规范：taxonomy.<语义词分组>.<词条>。
+# 说明：通用词条沿用 system 既有译文习惯；原中文硬编码标签（如“标签/分类”）收归词库。
+taxonomy:
+  nav:
+    title: "分类管理"
+  status:
+    published: "已发布"
+    unpublished: "已取消发布"
+    unknown: "未知"
+  error:
+    invalid_slug: "无效的别名。"
+  vocab:
+    blog:
+      tag:
+        single: "标签"
+        plural: "标签"
+      category:
+        single: "分类"
+        plural: "分类"
+  admin:
+    heading: "分类管理"
+    select: "选择"
+    cancel: "取消"
+    edit: "编辑"
+    title: "标题"
+    invalid_title: "无效的标题。"
+    slug: "别名"
+    status: "状态"
+    save: "保存"
+    image: "图片"
+    options: "选项"
+    enable_markdown: "启用 Markdown"
+    publish: "发布"
+    unpublish: "取消发布"
+    delete: "删除"
+    delete_terms: "删除分类？"
+    add: "添加"
+    show_all: "显示全部"
+    filter_by: "筛选自"
+    items_count: "# 项目"
+    url: "URL"
+    no_terms: "未找到分类。"
+    name: "名字"
+    term_saved: "分类已保存。"
+    terms_saved: "分类已保存。"
+    terms_deleted: "分类已删除。"
+    loading_failed: "加载失败。"
+    reorder_failed: "排序失败。"
+  blog:
+    tags_label: "标签"
+    category_label: "分类"

@@ -1,0 +1,34 @@
+<div>
+    <div v-if="selected.length" class="uk-grid">
+        <div v-for="term in selected" class="uk-width-1-1">
+            <div class="uk-badge uk-flex uk-flex-middle uk-margin-small-bottom"
+                 track-by="$index">
+                <span class="uk-flex-item-1 uk-text-left">{{ term.title }} </span>
+                <small class="uk-margin-small-left">({{ term.slug }})</small>
+                <a @click="remove(term)" class="uk-close uk-margin-small-left"></a>
+            </div>
+        </div>
+    </div>
+
+    <p>
+        <button type="button" class="uk-button uk-button-small" @click="pick">
+        {{ 'taxonomy.admin.select' | trans }} {{ taxonomy.label_plural | trans }}</button>
+    </p>
+
+    <v-modal v-ref:modal>
+
+        <div :is="'terms-list-' + taxonomy.type" v-ref:terms-list
+             :taxonomy="taxonomy"
+             :excluded="excluded"
+             :allow-add="allowAdd"></div>
+
+        <div class="uk-modal-footer uk-text-right">
+            <button class="uk-button uk-button-link uk-modal-close" type="button">{{ 'taxonomy.admin.cancel' | trans }}</button>
+            <button class="uk-button uk-button-primary" type="button" :disabled="!hasSelection()" @click="select()">
+                {{ 'taxonomy.admin.select' | trans }}
+            </button>
+        </div>
+
+    </v-modal>
+
+</div>

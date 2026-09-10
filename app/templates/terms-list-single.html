@@ -1,0 +1,53 @@
+<div>
+
+        <div class="uk-margin uk-flex uk-flex-space-between uk-flex-wrap" data-uk-margin>
+            <div>
+
+                <h2 class="uk-margin-small-bottom">{{ taxonomy.label_plural }}</h2>
+
+                <div>
+                    <div class="uk-search">
+                        <input class="uk-search-field" type="text" v-model="config.filter.search" debounce="300">
+                    </div>
+                </div>
+
+            </div>
+            <div v-if="allowAdd">
+
+                <button type="button" class="uk-button uk-button-primary" @click="add">
+                {{ 'taxonomy.admin.add' | trans }} {{ taxonomy.label_single | trans }}</button>
+
+            </div>
+        </div>
+
+        <div class="uk-margin uk-overflow-container">
+            <table class="uk-table uk-table-hover uk-table-middle uk-form">
+                <thead>
+                    <tr>
+                        <th class="sk-table-width-minimum"><input type="checkbox" v-check-all:selected.literal="input[name=id]" number></th>
+                        <th class="sk-table-min-width-200">{{ 'taxonomy.admin.name' | trans }}</th>
+                        <th class="sk-table-min-width-100">{{ 'taxonomy.admin.slug' | trans }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="check-item" v-for="term in terms" :class="{'uk-active': active(term)}">
+                        <td><input type="checkbox" name="id" :value="term.id" :disabled="disabled(term)" number></td>
+                        <td>
+                            <span v-if="disabled(term)" class="uk-text-muted">{{ term.title }}</span>
+                            <a v-else @click="select(term)">{{ term.title }}</a>
+                        </td>
+                        <td>{{ term.slug }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3 v-show="terms && !terms.length" class="uk-text-muted uk-text-center">{{ 'taxonomy.admin.no_terms' | trans }}</h3>
+
+        <v-pagination :page.sync="config.page" :pages="pages" v-show="pages > 1" :replace-state="false"></v-pagination>
+
+        <v-modal v-ref:form large>
+            <partial :name="taxonomy.options.term_type"></partial>
+        </v-modal>
+
+    </div>

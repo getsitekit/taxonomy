@@ -1,0 +1,24 @@
+<li class="uk-nestable-item" :class="{
+        'uk-parent': tree[term.id],
+        'uk-active': rootVm.active(term),
+        'uk-hidden': !rootVm.visible(term),
+    }" :data-id="term.id">
+    <div class="uk-nestable-panel sk-table-fake uk-visible-hover uk-form" @click="rootVm.toggle(term)">
+        <div class="sk-table-width-minimum sk-table-collapse">
+            <div class="uk-nestable-toggle" data-nestable-action="toggle"></div>
+        </div>
+        <div class="sk-table-width-minimum">
+            <input type="checkbox" name="id" :value="term.id" :disabled="rootVm.disabled(term)" number>
+        </div>
+        <div class="sk-table-min-width-200">
+                <span v-if="rootVm.disabled(term)" class="uk-text-muted">{{ term.title }}</span>
+                <a v-else>{{ term.title }}</a>
+        </div>
+        <div class="sk-table-width-100">{{ term.slug }}</div>
+    </div>
+
+    <ul class="uk-nestable-list" v-show="tree[term.id]">
+        <term-row v-for="term in tree[term.id]" :tree="tree" :term="term"></term-row>
+    </ul>
+
+</li>

@@ -1,0 +1,51 @@
+# taxonomy 模块翻译（en，语义 key yml 词库）
+# key 规范：taxonomy.<语义词分组>.<词条>。
+taxonomy:
+  nav:
+    title: "Taxonomy"
+  status:
+    published: "Published"
+    unpublished: "Unpublished"
+    unknown: "Unknown"
+  error:
+    invalid_slug: "Invalid slug."
+  vocab:
+    blog:
+      tag:
+        single: "Tag"
+        plural: "Tags"
+      category:
+        single: "Category"
+        plural: "Categories"
+  admin:
+    heading: "Taxonomies"
+    select: "Select"
+    cancel: "Cancel"
+    edit: "Edit"
+    title: "Title"
+    invalid_title: "Invalid title."
+    slug: "Slug"
+    status: "Status"
+    save: "Save"
+    image: "Image"
+    options: "Options"
+    enable_markdown: "Enable Markdown"
+    publish: "Publish"
+    unpublish: "Unpublish"
+    delete: "Delete"
+    delete_terms: "Delete terms?"
+    add: "Add"
+    show_all: "Show all"
+    filter_by: "Filter by"
+    items_count: "# Items"
+    url: "URL"
+    no_terms: "No terms found."
+    name: "Name"
+    term_saved: "Term saved."
+    terms_saved: "Terms saved."
+    terms_deleted: "Terms deleted."
+    loading_failed: "Loading failed."
+    reorder_failed: "Reorder failed."
+  blog:
+    tags_label: "Tags"
+    category_label: "Category"

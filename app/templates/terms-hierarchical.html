@@ -1,0 +1,60 @@
+<div>
+
+        <div v-if="taxonomy" class="uk-margin uk-flex uk-flex-space-between uk-flex-wrap" data-uk-margin>
+            <div class="uk-flex uk-flex-middle uk-flex-wrap" data-uk-margin>
+
+                <h2 class="uk-margin-remove">{{ taxonomy.label_plural | trans }}</h2>
+
+                <div class="uk-margin-left" v-show="selected.length">
+                    <ul class="uk-subnav sk-subnav-icon">
+                        <li><a class="sk-icon-check sk-icon-hover" :title="$trans('taxonomy.admin.publish')"
+                               data-uk-tooltip="{delay: 500}" @click="status(1)"></a></li>
+                        <li><a class="sk-icon-block sk-icon-hover" :title="$trans('taxonomy.admin.unpublish')"
+                               data-uk-tooltip="{delay: 500}" @click="status(0)"></a></li>
+                        <li><a class="sk-icon-delete sk-icon-hover" :title="'taxonomy.admin.delete' | trans"
+                               data-uk-tooltip="{delay: 500}" @click.prevent="remove"
+                               v-confirm="'taxonomy.admin.delete_terms' | trans"></a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="sk-search">
+                    <div class="uk-search">
+                        <input class="uk-search-field" type="text" v-model="config.filter.search" debounce="300">
+                    </div>
+                </div>
+
+            </div>
+            <div class="uk-position-relative" data-uk-margin>
+
+                <div>
+                    <button type="button" class="uk-button uk-button-primary" @click="editTerm()">
+                    {{ 'taxonomy.admin.add' | trans }} {{ taxonomy.label_single | trans }}</button>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="uk-overflow-container uk-form">
+
+            <div class="sk-table-fake sk-table-fake-header" :class="{'sk-table-fake-border': !tree[0]}">
+                <div class="sk-table-width-minimum sk-table-fake-nestable-padding"><input type="checkbox" v-check-all:selected.literal="input[name=id]" number></div>
+                <div class="sk-table-min-width-100">{{ 'taxonomy.admin.title' | trans }}</div>
+                <div class="sk-table-width-100 uk-text-center">{{ 'taxonomy.admin.status' | trans }}</div>
+                <div class="sk-table-width-100">{{ 'taxonomy.admin.items_count' | trans }}</div>
+                <div class="sk-table-width-150">{{ 'taxonomy.admin.url' | trans }}</div>
+            </div>
+
+            <ul class="uk-nestable uk-margin-remove" v-el:nestable v-show="tree[0]">
+                <term-row v-for="term in tree[0]" :tree="tree" :term="term"></term-row>
+            </ul>
+
+        </div>
+
+        <h3 class="uk-h1 uk-text-muted uk-text-center" v-show="tree && !tree[0]">{{ 'taxonomy.admin.no_terms' | trans }}</h3>
+
+        <v-modal v-ref:form large>
+            <partial :name="taxonomy.options.term_type"></partial>
+        </v-modal>
+
+    </div>

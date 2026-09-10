@@ -1,0 +1,44 @@
+<div>
+
+        <div class="uk-margin uk-flex uk-flex-space-between uk-flex-wrap" data-uk-margin>
+            <div class="uk-flex uk-flex-middle uk-flex-wrap" data-uk-margin>
+
+                <h2 class="uk-margin-remove">{{ taxonomy.label_plural | trans }}</h2>
+
+                <div class="sk-search">
+                    <div class="uk-search">
+                        <input class="uk-search-field" type="text" v-model="search">
+                    </div>
+                </div>
+
+            </div>
+            <div v-if="allowAdd">
+
+                <button type="button" class="uk-button uk-button-primary" @click="add">
+                {{ 'taxonomy.admin.add' | trans }} {{ taxonomy.label_single | trans }}</button>
+
+            </div>
+        </div>
+
+        <div class="uk-overflow-container uk-form" :style="overflowStyle">
+
+            <div class="sk-table-fake sk-table-fake-header" :class="{'sk-table-fake-border': !tree[0]}">
+                <div class="sk-table-width-minimum sk-table-fake-nestable-padding">
+                    <input type="checkbox" v-check-all:selected.literal="input[name=id]" number>
+                </div>
+                <div class="sk-table-min-width-200">{{ 'taxonomy.admin.title' | trans }}</div>
+                <div class="sk-table-min-width-100">{{ 'taxonomy.admin.slug' | trans }}</div>
+            </div>
+
+            <ul class="uk-nestable uk-margin-remove" v-el:nestable v-show="tree[0]">
+                <term-row v-for="term in tree[0]" :tree="tree" :term="term"></term-row>
+            </ul>
+
+        </div>
+
+        <h3 v-show="terms && !terms.length" class="uk-text-muted uk-text-center">{{ 'taxonomy.admin.no_terms' | trans }}</h3>
+
+        <v-modal v-ref:form large>
+            <partial :name="taxonomy.options.term_type"></partial>
+        </v-modal>
+    </div>
